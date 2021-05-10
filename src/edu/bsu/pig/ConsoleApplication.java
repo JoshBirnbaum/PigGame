@@ -23,16 +23,22 @@ public final class ConsoleApplication {
     }
 
     private static void playOneTurn(Game game) {
-        printScores();
-        println("It is " + game.currentPlayer().getName() + "'s turn");
-        println("This turn's score is " + game.currentTurn().getScore());
-        println("Press enter to roll, q to end turn");
-        String line = scanner.nextLine();
-        if(line.startsWith("q")) {
-            game.endTurn();
+        while(!game.currentTurn().isOver()) {
+            printScores();
+            println("It is " + game.currentPlayer().getName() + "'s turn");
+            println("This turn's score is " + game.currentTurn().getScore());
+            println("Press enter to roll, q to end turn");
+            String line = scanner.nextLine();
+            if(line.startsWith("q")) {
+                game.endTurn();
+            }
+            else {
+                int roll = game.roll();
+                println("You rolled a " + roll);
+            }
         }
-        else {
-            game.roll();
+        if (!game.isOver()) {
+            game.startNextTurn();
         }
     }
 

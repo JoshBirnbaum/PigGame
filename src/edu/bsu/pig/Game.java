@@ -29,6 +29,9 @@ public final class Game {
             this.winner = currentPlayer();
             this.isOver = true;
         }
+    }
+
+    public void startNextTurn() {
         turn = new Turn(DIE, nextPlayer());
     }
 
@@ -48,8 +51,8 @@ public final class Game {
         }
     }
 
-    public void roll() {
-        turn.roll();
+    public int roll() {
+        return turn.roll();
     }
 
     public Turn currentTurn() {
